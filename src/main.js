@@ -5,41 +5,41 @@ import './styles/main.scss'
 
 // Store Initialization
 // ------------------------------------
-const store = createStore(window.__INITIAL_STATE__)
+const store = createStore(window.__INITIAL_STATE__);
 
 // Render Setup
 // ------------------------------------
-const MOUNT_NODE = document.getElementById('root')
+const MOUNT_NODE = document.getElementById('root');
 
 let render = () => {
-  const App = require('./components/App').default
-  const routes = require('./routes/index').default(store)
+  const App = require('./components/App').default;
+  const routes = require('./routes/index').default(store);
 
   ReactDOM.render(
     <App store={store} routes={routes} />,
     MOUNT_NODE
   )
-}
+};
 
 // Development Tools
 // ------------------------------------
 if (__DEV__) {
   if (module.hot) {
-    const renderApp = render
+    const renderApp = render;
     const renderError = (error) => {
-      const RedBox = require('redbox-react').default
+      const RedBox = require('redbox-react').default;
 
       ReactDOM.render(<RedBox error={error} />, MOUNT_NODE)
-    }
+    };
 
     render = () => {
       try {
         renderApp()
       } catch (e) {
-        console.error(e)
+        console.error(e);
         renderError(e)
       }
-    }
+    };
 
     // Setup hot module replacement
     module.hot.accept([
@@ -47,7 +47,7 @@ if (__DEV__) {
       './routes/index',
     ], () =>
       setImmediate(() => {
-        ReactDOM.unmountComponentAtNode(MOUNT_NODE)
+        ReactDOM.unmountComponentAtNode(MOUNT_NODE);
         render()
       })
     )
@@ -56,4 +56,4 @@ if (__DEV__) {
 
 // Let's Go!
 // ------------------------------------
-if (!__TEST__) render()
+if (!__TEST__) render();
