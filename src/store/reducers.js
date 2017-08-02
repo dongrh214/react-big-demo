@@ -8,8 +8,12 @@ export const makeRootReducer = (asyncReducers) => {
   })
 }
 
+//注入新的reducer并更换store绑定的reducer
 export const injectReducer = (store, { key, reducer }) => {
   if (Object.hasOwnProperty.call(store.asyncReducers, key)) return
+
+
+
 
   store.asyncReducers[key] = reducer
   store.replaceReducer(makeRootReducer(store.asyncReducers))

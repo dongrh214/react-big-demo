@@ -11,7 +11,6 @@ export default (store) => ({
           dependencies for bundling   */
       const Counter = require('./containers/CounterContainer').default
       const reducer = require('./modules/counter').default
-
       /*  Add the reducer to the store on key 'counter'  */
       injectReducer(store, { key: 'counter', reducer })
 
