@@ -9,10 +9,9 @@ const mapDispatchToProps = {
 };
 
 function aaa(state) {
-  console.log('state:',state);
+
   return state.homeData;
 }
-
 const mapStateToProps = (state) => ({
   homeData : aaa(state)
 });
