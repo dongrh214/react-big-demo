@@ -70,8 +70,8 @@ class HomeSlider extends React.Component {
   render() {
     return (
        <div style={{ margin: '0 auto' }} >
-          <h2>homeData: {this.props.homeData.result}</h2>
-          <h2 onClick={ this.handleChange }>text: {this.state.text}</h2>
+          <div>homeData: {this.props.homeData.result}</div>
+          <div onClick={ this.handleChange }>text: {this.state.text}</div>
        </div>
     );
   }

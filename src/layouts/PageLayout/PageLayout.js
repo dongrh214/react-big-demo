@@ -5,7 +5,7 @@ import './PageLayout.less'
 
 export const PageLayout = ({ children }) => (
   <div className='container text-center'>
-    <h5 className="header">标题</h5>
+    <div className="header">标题</div>
     <IndexLink to='/' activeClassName='page-layout__nav-item--active'>Home</IndexLink>
     {' · '}
     <Link to='/counter' activeClassName='page-layout__nav-item--active'>Counter</Link>
