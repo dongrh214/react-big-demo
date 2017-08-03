@@ -72,13 +72,6 @@ class HomeSlider extends React.Component {
        <div style={{ margin: '0 auto' }} >
           <h2>homeData: {this.props.homeData.result}</h2>
           <h2 onClick={ this.handleChange }>text: {this.state.text}</h2>
-          <button className='btn btn-primary' onClick={this.props.increment}>
-            Increment
-          </button>
-            {' '}
-          <button className='btn btn-secondary' onClick={this.props.doubleAsync}>
-            Double (Async)
-          </button>
        </div>
     );
   }

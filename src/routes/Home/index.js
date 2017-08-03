@@ -4,12 +4,12 @@ export default (store) => ({
   getComponent (nextState, cb) {
     require.ensure([], (require) => {
 
-      const HomeSlider = require('./containers/HomeSlider').default;
+      const Home = require('./containers/Home').default;
       const reducer = require('./modules/home').default;
 
       injectReducer(store, { key: 'homeData', reducer });
 
-      cb(null, HomeSlider)
+      cb(null, Home)
 
     }, 'home')
   }

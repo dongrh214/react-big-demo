@@ -31,7 +31,7 @@ const config = {
       inProject(project.srcDir),
       'node_modules',
     ],
-    extensions: ['*', '.js', '.jsx', '.json'],
+    extensions: ['*', '.web.js',  '.js', '.jsx', '.json'],
   },
   externals: project.externals,
   module: {
@@ -49,6 +49,7 @@ const config = {
 
 // JavaScript
 // ------------------------------------
+
 config.module.rules.push({
   test: /\.(js|jsx)$/,
   exclude: /node_modules/,
@@ -73,6 +74,7 @@ config.module.rules.push({
             useBuiltIns: true // we polyfill Object.assign in src/normalize.js
           },
         ],
+        ["import", { "style": "css", "libraryName": "antd-mobile" }],
       ],
       presets: [
         'babel-preset-react',
@@ -96,8 +98,77 @@ const extractStyles = new ExtractTextPlugin({
   disable: __DEV__,
 })
 
+// config.module.rules.push({
+//   test: /\.(sass|scss)$/,
+//   loader: extractStyles.extract({
+//     fallback: 'style-loader',
+//     use: [
+//       {
+//         loader: 'css-loader',
+//         options: {
+//           sourceMap: project.sourcemaps,
+//           minimize: {
+//             autoprefixer: {
+//               add: true,
+//               remove: true,
+//               browsers: ['last 2 versions'],
+//             },
+//             discardComments: {
+//               removeAll : true,
+//             },
+//             discardUnused: false,
+//             mergeIdents: false,
+//             reduceIdents: false,
+//             safe: true,
+//             sourcemap: project.sourcemaps,
+//           },
+//         },
+//       },
+//       {
+//         loader: 'sass-loader',
+//         options: {
+//           sourceMap: project.sourcemaps,
+//           includePaths: [
+//             inProjectSrc('styles'),
+//           ],
+//         },
+//       }
+//     ],
+//   })
+// })
+
 config.module.rules.push({
-  test: /\.(sass|scss)$/,
+  test: /\.(css)$/,
+  loader: extractStyles.extract({
+    fallback: 'style-loader',
+    use: [
+      {
+        loader: 'css-loader',
+        // options: {
+        //   sourceMap: project.sourcemaps,
+        //   minimize: {
+        //     autoprefixer: {
+        //       add: true,
+        //       remove: true,
+        //       browsers: ['last 2 versions'],
+        //     },
+        //     discardComments: {
+        //       removeAll : true,
+        //     },
+        //     discardUnused: false,
+        //     mergeIdents: false,
+        //     reduceIdents: false,
+        //     safe: true,
+        //     sourcemap: project.sourcemaps,
+        //   },
+        // },
+      }
+    ],
+  })
+});
+
+config.module.rules.push({
+  test: /\.(less)$/,
   loader: extractStyles.extract({
     fallback: 'style-loader',
     use: [
@@ -123,7 +194,7 @@ config.module.rules.push({
         },
       },
       {
-        loader: 'sass-loader',
+        loader: 'less-loader',
         options: {
           sourceMap: project.sourcemaps,
           includePaths: [
@@ -134,6 +205,7 @@ config.module.rules.push({
     ],
   })
 })
+
 config.plugins.push(extractStyles)
 
 // Images
