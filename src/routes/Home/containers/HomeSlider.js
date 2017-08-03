@@ -1,19 +1,23 @@
 import { connect } from 'react-redux'
-import { increment, doubleAsync } from '../modules/home'
+import { actions } from '../modules/home'
 
 import HomeSlider from '../components/HomeSlider'
 
+
+
 const mapDispatchToProps = {
-  increment : () => increment(1),
-  doubleAsync
+  increment : () => actions.increment(1),
+  doubleAsync: actions.doubleAsync,
+  createRequest: actions.createRequest
+
+};
+const getMapState = (state, name) => {
+  console.log('state:',state);
+  return state[name]
 };
 
-function aaa(state) {
-
-  return state.homeData;
-}
 const mapStateToProps = (state) => ({
-  homeData : aaa(state)
+  homeData : getMapState(state, 'homeData')
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeSlider)

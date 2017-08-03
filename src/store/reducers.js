@@ -1,22 +1,20 @@
 import { combineReducers } from 'redux'
 import locationReducer from './location'
+// import requestReducer from './request'
 
 export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
     location: locationReducer,
     ...asyncReducers
   })
-}
+};
 
 //注入新的reducer并更换store绑定的reducer
 export const injectReducer = (store, { key, reducer }) => {
-  if (Object.hasOwnProperty.call(store.asyncReducers, key)) return
+  if (Object.hasOwnProperty.call(store.asyncReducers, key)) return;
 
-
-
-
-  store.asyncReducers[key] = reducer
+  store.asyncReducers[key] = reducer;
   store.replaceReducer(makeRootReducer(store.asyncReducers))
-}
+};
 
 export default makeRootReducer
