@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { actions } from '../modules/home'
+import { createRequest } from '../../../actions/request';
 
 //引入子组件
 import HomeSlider from '../components/HomeSlider'
@@ -22,7 +22,9 @@ class HomeView extends React.Component {
   }
 
   componentDidMount(){
-    console.log('this.props:',this.props)
+    const url = 'https://www.xhqb.com/mallweb-app/wxmall/newIndex';
+    this.props.createRequest(url);
+    // console.log('this.props:',this.props)
   }
 
   render() {
@@ -47,10 +49,13 @@ HomeSlider.defaultProps = {
 
 
 const mapDispatchToProps = {
-  createRequest: actions.createRequest
+  createRequest: createRequest
 };
 const getMapState = (state, name) => {
-  console.log('state:',state);
+  console.log('state------>:',state);
+  if (state[name].result) {
+    console.log('state------>:',state[name]);
+  }
   return state[name]
 };
 

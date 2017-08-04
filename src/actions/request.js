@@ -35,8 +35,8 @@ const fail = (dispatch, err) => {
   return err
 };
 
-export const createRequest = (url) => dispatch => {
 
+export const createRequest = (url) => dispatch => {
   (async function () {
     try {
       const result = await fetch(url,{
@@ -51,7 +51,6 @@ export const createRequest = (url) => dispatch => {
       }
       //数据json化
       const data = await result.json();
-      console.log(data);
       return success(dispatch, data)
     } catch (err) {
       // console.log('err:',err);
@@ -60,8 +59,3 @@ export const createRequest = (url) => dispatch => {
   })();
 };
 
-export const actions = {
-  createRequest,
-  createRequestSuccess,
-  createRequestFail
-};

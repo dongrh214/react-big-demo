@@ -42,9 +42,6 @@ export const actions = {
   createRequest,
   createRequestSuccess,
   createRequestFail,
-
-  // increment,
-  // doubleAsync
 };
 
 // ------------------------------------
@@ -56,7 +53,7 @@ const ACTION_HANDLERS = {
 
   [CREATE_REQUEST_SUCCESS]    : (state, action) => {
 
-    console.log('action:',action.payload);
+    // console.log('action:',action.payload);
     return action.payload
   },
   [CREATE_REQUEST_FAIL]    : (state, action) => state + action.payload,
@@ -73,7 +70,7 @@ export default function homeReducer (state = initialState, action) {
 
   const s = handler ? handler(state, action) : state;
 
-  console.log('s:',s)
+  // console.log('s:',s)
 
   return s;
 }

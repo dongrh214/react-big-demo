@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux'
 import locationReducer from './location'
-// import requestReducer from './request'
+import fetchReducer from './fetch'
 
 export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
     location: locationReducer,
+    isFetching:fetchReducer,
     ...asyncReducers
   })
 };
