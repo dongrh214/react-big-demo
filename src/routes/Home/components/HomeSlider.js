@@ -6,11 +6,9 @@ import Cursor from 'immutable/contrib/cursor'
 import PureComponent from '../../../components/PureComponent';
 
 
-
 class HomeSlider extends PureComponent {
   constructor(props) {
     super(props);
-
     // 设置 initial state
     this.state = {
       data: Map({
@@ -22,8 +20,6 @@ class HomeSlider extends PureComponent {
     };
     // ES6 类中函数必须手动绑定
     this.handleChange = this.handleChange.bind(this);
-
-
   }
   handleChange(event) {
     console.log('12');
@@ -50,9 +46,6 @@ class HomeSlider extends PureComponent {
 　
   componentDidMount(){
 
-
-    // console.log('this.state:',this.state)
-    //test immutable
     console.log('test immutable');
     let a = Map({
       select: 'users',
@@ -72,20 +65,12 @@ class HomeSlider extends PureComponent {
     cursor.get('c'); // 1
     cursor = cursor.update('c', x => x + 1);
     cursor.get('c'); // 2
-
-
-    //test immutable end
     console.log('test immutable end');
-
-
-
-    // console.log('this.props:',this.props)
   }
 
 
 
   componentWillUpdate(nextProps, nextState){
-
   }
 
   componentDidUpdate(){
