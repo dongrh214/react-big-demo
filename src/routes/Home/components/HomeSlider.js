@@ -3,44 +3,22 @@ import PropTypes from 'prop-types'
 import Immutable, { is, Map } from 'immutable'
 import Cursor from 'immutable/contrib/cursor'
 
-let hasOwnProperty = Object.prototype.hasOwnProperty;
-function shallowEqual(objA, objB) {
-  if (objA === objB || is(objA, objB)) {
-    return true;
-  }
-
-  if (typeof objA !== 'object' || objA === null || typeof objB !== 'object' || objB === null) {
-    return false;
-  }
-
-  let keysA = Object.keys(objA);
-  let keysB = Object.keys(objB);
-
-  if (keysA.length !== keysB.length) {
-    return false;
-  }
-  let bHasOwnProperty = hasOwnProperty.bind(objB);
-  for (let i = 0; i < keysA.length; i++) {
-    if (!bHasOwnProperty(keysA[i]) || !is(objA[keysA[i]], objB[keysA[i]])) {
-      return false;
-    }
-  }
-
-  return true;
-}
-function shallowCompare(instance, nextProps, nextState) {
-  return !shallowEqual(instance.props, nextProps) || !shallowEqual(instance.state, nextState);
-}
+import PureComponent from '../../../components/PureComponent';
 
 
 
-class HomeSlider extends React.Component {
+class HomeSlider extends PureComponent {
   constructor(props) {
     super(props);
 
     // 设置 initial state
     this.state = {
-      data: Map({ times: 0})
+      data: Map({
+        times: 0,
+        ads:Map({
+          aaa:'bbb'
+        })
+      })
     };
     // ES6 类中函数必须手动绑定
     this.handleChange = this.handleChange.bind(this);
@@ -49,11 +27,17 @@ class HomeSlider extends React.Component {
   }
   handleChange(event) {
     console.log('12');
+    let ads = this.state.data.get('ads');
+    ads = ads.update('aaa',v => 'ccc');
+    let data = this.state.data;
+    data = data.update('times', v => 12)
+    data = data.update('ads',v => ads);
     this.setState({
-      data: this.state.data.update('times', v => 12)
+      data: data
     });
     // 这时的 times 并不会改变
     console.log('this.state.data.time:',this.state.data.get('times'));
+    console.log('this.state.data.time:',this.state.data.get('ads').get('aaa'));
 
     // this.setState(({data}) => ({
     //     data: data.update('times', v => v + 1) })
@@ -98,39 +82,7 @@ class HomeSlider extends React.Component {
     // console.log('this.props:',this.props)
   }
 
-  componentWillReceiveProps(nextProps){
 
-  }
-
-
-
-
-  shouldComponentUpdate(nextProps = {}, nextState = {}){
-
-    return !(this.props === nextProps || is(this.props, nextProps)) ||
-      !(this.state === nextState || is(this.state, nextState));
-
-
-
-    // const thisProps = this.props || {}, thisState = this.state || {};
-    // if (Object.keys(thisProps).length !== Object.keys(nextProps).length ||
-    //   Object.keys(thisState).length !== Object.keys(nextState).length) {
-    //   return true;
-    // }
-    //
-    // for (const key in nextProps) {
-    //   if (thisProps[key] !== nextProps[key] || !is(thisProps[key], nextProps[key])) {
-    //     return true;
-    //   }
-    // }
-    //
-    // for (const key in nextState) {
-    //   if (thisState[key] !== nextState[key] || !is(thisState[key], nextState[key])) {
-    //     return true;
-    //   }
-    // }
-    // return false;
-  }
 
   componentWillUpdate(nextProps, nextState){
 
@@ -144,7 +96,7 @@ class HomeSlider extends React.Component {
     return (
        <div style={{ margin: '0 auto' }} >
           <div>homeData: {this.props.homeData.result}</div>
-          <div onClick={ this.handleChange }>text: { this.state.data.get('times') }</div>
+          <div onClick={ this.handleChange }>text: { this.state.data.get('times') } ==== { this.state.data.get('ads').get('aaa') }</div>
        </div>
     );
   }

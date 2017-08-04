@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux'
+// import { combineReducers } from 'redux-immutable'; // 由redux-immutable创建
+
 import locationReducer from './location'
 import fetchReducer from './fetch'
 

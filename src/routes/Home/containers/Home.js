@@ -23,7 +23,7 @@ class HomeView extends React.Component {
 
   componentDidMount(){
     const url = 'https://www.xhqb.com/mallweb-app/wxmall/newIndex';
-    this.props.createRequest(url);
+    // this.props.createRequest(url);
     // console.log('this.props:',this.props)
   }
 
@@ -52,11 +52,12 @@ const mapDispatchToProps = {
   createRequest: createRequest
 };
 const getMapState = (state, name) => {
-  console.log('state------>:',state);
-  if (state[name].result) {
-    console.log('state------>:',state[name]);
-  }
-  return state[name]
+  // console.log('state------>:',state);
+  // if (state[name].result) {
+  //   console.log('state------>:',state[name]);
+  // }
+  // return state[name]
+  return state;
 };
 
 const mapStateToProps = (state) => ({

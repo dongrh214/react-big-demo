@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
 import './styles/main.less'
 
+
 // Store Initialization
 // ------------------------------------
 const store = createStore(window.__INITIAL_STATE__);
