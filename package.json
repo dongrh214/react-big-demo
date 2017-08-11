@@ -20,8 +20,6 @@
   "author": "dongruihe",
   "license": "MIT",
   "dependencies": {
-    "antd-mobile": "^1.6.0",
-    "bootstrap": "^4.0.0-alpha",
     "compression": "^1.6.2",
     "express": "^4.14.0",
     "object-assign": "^4.1.1",
@@ -38,6 +36,7 @@
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
+    "autoprefixer": "^7.1.2",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.0.0",
@@ -84,6 +83,9 @@
     "less-loader": "^4.0.5",
     "mocha": "^3.2.0",
     "phantomjs-prebuilt": "^2.1.14",
+    "postcss": "^6.0.8",
+    "postcss-loader": "^2.0.6",
+    "postcss-pxtorem": "^3.3.1",
     "react-addons-test-utils": "^15.5.1",
     "react-test-renderer": "^15.5.4",
     "rimraf": "^2.6.1",

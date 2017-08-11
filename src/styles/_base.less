@@ -1,12 +1,57 @@
-/*
-Application Settings Go Here
-------------------------------------
-This file acts as a bundler for all variables/mixins/themes, so they
-can easily be swapped out without `core.scss` ever having to know.
+html {
+  font-family: "思源黑体", "CN", "Microsoft YaHei", "Segoe UI", "Lucida Grande", Helvetica, Arial, FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  color: #4c4c4c;
+}
+::-webkit-scrollbar
+{
+  background-color: transparent;
+  width: 0;
+  height: 0;
+}
 
-For example:
-
-@import './variables/colors';
-@import './variables/components';
-@import './themes/default';
-*/
+/*禁止长按复制粘贴*/
+*{
+  -webkit-touch-callout:none;  /*系统默认菜单被禁用*/
+  -webkit-user-select:none; /*webkit浏览器*/
+  -khtml-user-select:none; /*早期浏览器*/
+  -moz-user-select:none;/*火狐*/
+  -ms-user-select:none; /*IE10*/
+  user-select:none;
+}
+/*上面代码会导致ios的input无法输入，添加自动选中解决*/
+input,textarea {
+  -webkit-user-select:auto; /*webkit浏览器*/
+}
+p {
+  margin: 0 0;
+  padding: 0 0;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.clearfix {
+  zoom: 1;
+}
+.ly-wrapper {
+  height: 100%;
+}

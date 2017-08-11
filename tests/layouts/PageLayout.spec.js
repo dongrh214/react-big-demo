@@ -2,7 +2,7 @@ import React from 'react'
 import PageLayout from 'layouts/PageLayout/PageLayout'
 import { shallow } from 'enzyme'
 
-describe('(Layout) PageLayout', () => {
+describe('(layout) PageLayout', () => {
   it('renders as a <div>', () => {
     shallow(<PageLayout />).should.have.tagName('div')
   })

@@ -1,0 +1,221 @@
+/*the below is the css for self-defined font-family xhmall*/
+@font-face {
+  font-family: 'xhmall';
+  src: url('./font/xhmall.eot?k4w8a1');
+  src: url('./font/xhmall.eot?k4w8a1#iefix') format('embedded-opentype'), url('./font/xhmall.ttf?k4w8a1') format('truetype'), url('./font/xhmall.woff?k4w8a1') format('woff'), url('./font/xhmall.svg?k4w8a1#xhmall') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="ico-"],
+[class*=" ico-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'xhmall' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.ico-home1:before {
+  content: "\e900";
+}
+.ico-home2:before {
+  content: "\e901";
+}
+.ico-folder1:before {
+  content: "\e902";
+}
+.ico-folder2:before {
+  content: "\e903";
+}
+.ico-people1:before {
+  content: "\e904";
+}
+.ico-people2:before {
+  content: "\e905";
+}
+.ico-more:before {
+  content: "\e906";
+}
+.ico-circle-plus:before {
+  content: "\e907";
+}
+.ico-circle-just:before {
+  content: "\e908";
+}
+.ico-circle-yes:before {
+  content: "\e909";
+}
+.ico-double-arrow-right:before {
+  content: "\e90a";
+}
+.ico-back:before {
+  content: "\e90b";
+}
+.ico-circle-yes2:before {
+  content: "\e90c";
+}
+.ico-many-people:before {
+  content: "\e90d";
+}
+.ico-heart:before {
+  content: "\e90e";
+}
+.ico-heart2:before {
+  content: "\e90f";
+}
+.icon-icon-0115:before {
+  content: "\e910";
+}
+.icon-icon-0116:before {
+  content: "\e911";
+}
+.icon-icon-0117:before {
+  content: "\e912";
+}
+.icon-icon-0118:before {
+  content: "\e913";
+}
+.icon-icon-0119:before {
+  content: "\e914";
+}
+.ico-message:before {
+  content: "\e915";
+}
+.ico-heart3:before {
+  content: "\e916";
+}
+.ico-sets:before {
+  content: "\e917";
+}
+.ico-mobile:before {
+  content: "\e918";
+}
+.icon-message2:before {
+  content: "\e919";
+}
+.ico-clear:before {
+  content: "\e91a";
+}
+.ico-confirm:before {
+  content: "\e91b";
+}
+.ico-detail2:before {
+  content: "\e91c";
+}
+.ico-detail:before {
+  content: "\e91d";
+}
+.ico-throw:before {
+  content: "\e91e";
+}
+.ico-people3:before {
+  content: "\e91f";
+}
+.ico-email:before {
+  content: "\e920";
+}
+.ico-why:before {
+  content: "\e921";
+}
+.ico-loading:before {
+  content: "\e922";
+}
+.ico-search:before {
+  content: "\e923";
+}
+.ico-x:before {
+  content: "\e924";
+}
+.ico-arrow-right:before {
+  content: "\e925";
+}
+.ico-arrow-right2:before {
+  content: "\e926";
+}
+.ico-arrow-down:before {
+  content: "\e927";
+}
+.ico-arrow-up:before {
+  content: "\e928";
+}
+.ico-arrow-up2:before {
+  content: "\e929";
+}
+.ico-arrow-down2:before {
+  content: "\e92a";
+}
+.ico-yes:before {
+  content: "\e92b";
+}
+.ico-nav:before {
+  content: "\e92c";
+}
+.ico-edit:before {
+  content: "\e92d";
+}
+.ico {
+  font-family: "xhmall";
+}
+
+/*the below is the css for self-defined font-family xhmall 1*/
+@font-face {
+  font-family: 'icomoon';
+  src:    url('./font/icomoon.eot?bylibb');
+  src:    url('./font/icomoon.eot?bylibb#iefix') format('embedded-opentype'),
+  url('./font/icomoon.ttf?bylibb') format('truetype'),
+  url('./font/icomoon.woff?bylibb') format('woff'),
+  url('./font/icomoon.svg?bylibb#xhmall1') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="ico1-"], [class*=" ico1-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.ico1{
+  font-family:"icomoon";
+}
+.ico1-throw:before {
+  content: "\e900";
+}
+.ico1-rdo-no:before {
+  content: "\e901";
+}
+.ico1-rdo-yes:before {
+  content: "\e902";
+}
+.ico1-time:before {
+  content: "\e903";
+}
+.ico1-rate:before {
+  content: "\e904";
+}
+.ico1-unagree:before {
+  content: "\e905";
+}
+.ico1-agree:before {
+  content: "\e906";
+}
+.ico1-loading:before {
+  content: "\e907";
+}
+.ico1-plus:before {
+  content: "\e908";
+}
+

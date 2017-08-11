@@ -4,6 +4,33 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const project = require('../project.config')
 
+
+const autoprefixer = require('autoprefixer');
+const pxtorem = require('postcss-pxtorem');
+
+
+const postcssOpts = {
+  ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
+  plugins: () => [
+    autoprefixer({
+      browsers: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8', 'iOS >= 8', 'Android >= 4'],
+    }),
+    pxtorem({ rootValue: 100, propWhiteList: [] })
+  ],
+  sourceMap: project.sourcemaps,
+  minimize: {
+    discardComments: {
+      removeAll : true,
+    },
+    discardUnused: false,
+    mergeIdents: false,
+    reduceIdents: false,
+    safe: true,
+    sourcemap: project.sourcemaps,
+  },
+};
+
+
 const inProject = path.resolve.bind(path, project.basePath)
 const inProjectSrc = (file) => inProject(project.srcDir, file)
 
@@ -37,6 +64,7 @@ const config = {
   module: {
     rules: [],
   },
+
   plugins: [
     new webpack.DefinePlugin(Object.assign({
       'process.env': { NODE_ENV: JSON.stringify(project.env) },
@@ -98,44 +126,6 @@ const extractStyles = new ExtractTextPlugin({
   disable: __DEV__,
 })
 
-// config.module.rules.push({
-//   test: /\.(sass|scss)$/,
-//   loader: extractStyles.extract({
-//     fallback: 'style-loader',
-//     use: [
-//       {
-//         loader: 'css-loader',
-//         options: {
-//           sourceMap: project.sourcemaps,
-//           minimize: {
-//             autoprefixer: {
-//               add: true,
-//               remove: true,
-//               browsers: ['last 2 versions'],
-//             },
-//             discardComments: {
-//               removeAll : true,
-//             },
-//             discardUnused: false,
-//             mergeIdents: false,
-//             reduceIdents: false,
-//             safe: true,
-//             sourcemap: project.sourcemaps,
-//           },
-//         },
-//       },
-//       {
-//         loader: 'sass-loader',
-//         options: {
-//           sourceMap: project.sourcemaps,
-//           includePaths: [
-//             inProjectSrc('styles'),
-//           ],
-//         },
-//       }
-//     ],
-//   })
-// })
 
 config.module.rules.push({
   test: /\.(css)$/,
@@ -144,24 +134,23 @@ config.module.rules.push({
     use: [
       {
         loader: 'css-loader',
-        // options: {
-        //   sourceMap: project.sourcemaps,
-        //   minimize: {
-        //     autoprefixer: {
-        //       add: true,
-        //       remove: true,
-        //       browsers: ['last 2 versions'],
-        //     },
-        //     discardComments: {
-        //       removeAll : true,
-        //     },
-        //     discardUnused: false,
-        //     mergeIdents: false,
-        //     reduceIdents: false,
-        //     safe: true,
-        //     sourcemap: project.sourcemaps,
-        //   },
-        // },
+        options: {
+          sourceMap: project.sourcemaps,
+          minimize: {
+            discardComments: {
+              removeAll : true,
+            },
+            discardUnused: false,
+            mergeIdents: false,
+            reduceIdents: false,
+            safe: true,
+            sourcemap: project.sourcemaps,
+          },
+        },
+      },
+      {
+        loader: 'postcss-loader',
+        options: postcssOpts,
       }
     ],
   })
@@ -177,11 +166,6 @@ config.module.rules.push({
         options: {
           sourceMap: project.sourcemaps,
           minimize: {
-            autoprefixer: {
-              add: true,
-              remove: true,
-              browsers: ['last 2 versions'],
-            },
             discardComments: {
               removeAll : true,
             },
@@ -194,11 +178,15 @@ config.module.rules.push({
         },
       },
       {
+        loader: 'postcss-loader',
+        options: postcssOpts,
+      },
+      {
         loader: 'less-loader',
         options: {
           sourceMap: project.sourcemaps,
           includePaths: [
-            inProjectSrc('styles'),
+            inProjectSrc('src'),
           ],
         },
       }
@@ -252,6 +240,9 @@ config.plugins.push(new HtmlWebpackPlugin({
   },
 }))
 
+
+
+
 // Development Tools
 // ------------------------------------
 if (__DEV__) {
@@ -303,4 +294,4 @@ if (__PROD__) {
   )
 }
 
-module.exports = config
+module.exports = config;

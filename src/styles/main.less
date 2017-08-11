@@ -1,24 +1,39 @@
-//@import 'base';
-//@import '~bootstrap/scss/bootstrap.scss';
+@import '_base';
 
-// Some best-practice CSS that's useful for most apps
-// Just remove them if they're not what you want
-html {
-  box-sizing: border-box;
-  .container {
-    margin: 0;
-  }
+//基本公共样式
+.flex {
+  display: flex;
+}
+.flex-row {
+  .flex;
+  flex-direction: row;
+}
+.flex-column {
+  .flex;
+  flex-direction: column;
+}
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+.space-between {
+  justify-content: space-between;
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+
+#root {
+  width: 750px;
+  margin: 0 auto;
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
+
+// list
+.my-list .spe .am-list-extra {
+  flex-basis: initial;
 }
+
+//ant-design-mobile
+.am-list-body {
+  border-top: none!important;
+}
+

@@ -1,17 +1,26 @@
 .container {
 	padding:0 0
 }
-.page-layout__viewport {
-  padding-top: 0.3rem;
-}
-
-.page-layout__nav-item--active {
-  font-weight: bold;
-  text-decoration: underline;
-}
 
 .header {
-	height:45px;
-	line-height:45px;
-	background-color:#eeeeee;
+  height: 80px;
+  line-height: 80px;
+  width: 750px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top:0;
+  left: 0;
+  z-index: 99;
+  border-bottom: 2px solid #eeeeee;
+  a {
+    position: absolute;
+    left: 36px;
+    color: #aaaaaa;
+  }
+}
+.page-layout__viewport {
+  margin-top: 80px;
 }

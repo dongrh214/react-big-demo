@@ -5,32 +5,34 @@
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function createRequestSuccess (value = 1) {
-  return {
-    type    : CREATE_REQUEST_SUCCESS,
-    payload : value
-  }
-}
-export function createRequestFail (value = 1) {
-  return {
-    type    : CREATE_REQUEST_FAIL,
-    payload : value
-  }
-}
+// export function createRequestSuccess (value = 1) {
+//   return {
+//     type    : CREATE_REQUEST_SUCCESS,
+//     payload : value
+//   }
+// }
+// export function createRequestFail (value = 1) {
+//   return {
+//     type    : CREATE_REQUEST_FAIL,
+//     payload : value
+//   }
+// }
 
-const success = (dispatch, result) => {
+const success = (dispatch, result, url) => {
+
   dispatch({
     type: 'CREATE_REQUEST_SUCCESS',
-    payload: result
+    payload: result,
+    url:url || ''
   });
-  console.log('result',result.json());
   return result
 };
 
-const fail = (dispatch, err) => {
+const fail = (dispatch, err, url) => {
   dispatch({
     type: 'CREATE_REQUEST_FAIL',
-    err
+    err,
+    url:url || ''
   });
   return err
 };
@@ -44,18 +46,32 @@ export const createRequest = (url) => dispatch => {
         credentials: 'include',
       });
       if (result.ok) {
-        console.log('fetch succuss')
       }
       if (result.status === 404) {
-          console.log('fetch 404 !')
       }
       //数据json化
       const data = await result.json();
-      return success(dispatch, data)
+      return success(dispatch, data, url)
     } catch (err) {
-      // console.log('err:',err);
-      // return fail(dispatch, err)
+      return fail(dispatch, err, url)
     }
   })();
+};
+
+export const fetchData = (url,params) => (dispatch, getState) => {
+  return fetch(url, {
+    method:'get',
+    credentials: 'include',
+  }).then(response =>
+  {
+    return response.json();
+  })
+    .then(json => {
+
+        return success(dispatch, json, url);
+    })
+    .catch( err => {
+        return fail(dispatch, err, url)
+    })
 };
 

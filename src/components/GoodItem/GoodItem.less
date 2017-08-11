@@ -1,0 +1,36 @@
+.good-item {
+  padding: 10px 10px;
+  width: 200px;
+  background-color: #ffffff;
+  margin-right: 20px;
+  display: inline-block;
+  .good-item-img {
+    width: 220px;
+    height: 220px;
+    position: relative;
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%,-50%);
+      transform: translate(-50%,-50%);
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+  .good-title {
+    margin-top: 10px;
+    font-size: 28px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .good-price {
+    margin-top: 10px;
+    font-size: 28px;
+    label {
+      font-size: 30px;
+      color: #f6ab00;
+    }
+  }
+}
