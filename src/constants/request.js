@@ -5,5 +5,5 @@
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const CREATE_REQUEST_SUCCESS = 'CREATE_REQUEST_SUCCESS';
-export const CREATE_REQUEST_FAIL = 'CREATE_REQUEST_FAIL';
+export const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
+export const REQUEST_FAIL = 'REQUEST_FAIL';

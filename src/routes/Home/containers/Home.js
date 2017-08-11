@@ -2,73 +2,30 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { createRequest } from '../../../actions/request';
+import { fetchData } from '../../../actions/request';
 
-//引入子组件
-import Slider from '../components/Slider/Slider'
-import TopSymbol from '../components/TopSymbol/TopSymbol';
-import FlashSale from '../components/FlashSale/FlashSale';
-import GoodAlbums from '../components/GoodAlbums/GoodAlbums';
-
-import { List } from 'antd-mobile';
-
+import Layout from '../layout/Layout'
 
 class HomeView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.getSlider = this.getSlider.bind(this);;
   }
 
   componentDidMount(){
+    const { dispatch } = this.props;
     const url = 'https://www.xhqb.com/mallweb-app/wxmall/newIndex';
-    this.props.createRequest(url);
-  }
-
-  getSlider(props) {
-    if (props) {
-      return <Slider
-        adsData = { props }
-      />
-    }
-    return ''
-  }
-  getFlashSale(props) {
-    if (props) {
-      return <FlashSale
-          actGoods = { props }
-        />
-    }
-    return ''
-  }
-  getGoodAlbums(props) {
-    let goodAlbumsArray = [];
-    if (props){
-      props.map( (item, index) => {
-        goodAlbumsArray.push(
-          <GoodAlbums key={ index } goodAlbumData = { item }/>
-        )
-      });
-    }
-    return goodAlbumsArray
+    dispatch(fetchData(url)).then((data) => {
+      console.log('获取到首页数据!')
+    })
   }
 
   render() {
-    const { ads, actGoods, goodAlbums  } = this.props.homeData;
+    const { homeData  } = this.props;
     return (
-      <div style={{ margin: '0 auto' }} >
-        <List  className="my-list">
-          {/*头部宣传图*/}
-          <TopSymbol />
-          {/*头部轮播图*/}
-          { this.getSlider(ads) }
-          {/*现实抢购*/}
-          { this.getFlashSale(actGoods) }
-          {/*专辑列表*/}
-          { this.getGoodAlbums(goodAlbums) }
-          {/*<Item extra={'extra content'} onLongPress={this.handleLongPress}>Title</Item>*/}
-        </List>
-      </div>
+      <Layout
+        homeData={ homeData }
+      />
     );
   }
 }
@@ -81,8 +38,10 @@ HomeView.defaultProps = {
 };
 
 
-const mapDispatchToProps = {
-  createRequest: createRequest
+const mapDispatchToProps = (dispatch)=> {
+  return {
+    dispatch
+  }
 };
 const getMapState = (state, name) => {
   let data = {};
