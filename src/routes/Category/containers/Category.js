@@ -50,7 +50,6 @@ Category.defaultProps = {
 
 const mapDispatchToProps = (dispatch)=> {
   return {
-    createRequest: createRequest,
     fetchData: fetchData,
     dispatch
   }

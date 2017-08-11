@@ -1,15 +1,19 @@
-.second-category {
+.second-category-wrap {
   flex: 1;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
-  height: 100%;
   background-color: #ffffff;
-  .second-category-item-wrap {
-    width: 440px;
+  .second-category {
     margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    height: 100%;
+    width: 440px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    .am-list-body {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
   }
 }
+

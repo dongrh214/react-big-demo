@@ -4,11 +4,16 @@ import { browserHistory } from 'react-router'
 import makeRootReducer from './reducers'
 import { updateLocation } from './location'
 
+import createSagaMiddleware from 'redux-saga'
+import { helloSaga } from './saga'
+
 const createStore = (initialState = {}) => {
   // ======================================================
   // Middleware Configuration
   // ======================================================
-  const middleware = [thunk];
+  const middlewares = [thunk];
+  const sagaMiddleware = createSagaMiddleware();
+  middlewares.push(sagaMiddleware);
 
   // ======================================================
   // Store Enhancers
@@ -25,14 +30,22 @@ const createStore = (initialState = {}) => {
   // ======================================================
   // Store Instantiation and HMR Setup
   // ======================================================
-  const store = createReduxStore(
+  // const store = createReduxStore(
+  //   makeRootReducer(),
+  //   initialState,
+  //   composeEnhancers(
+  //     applyMiddleware(...middlewares),
+  //     ...enhancers
+  //   )
+  // );
+  const store = composeEnhancers(
+    applyMiddleware(...middlewares),
+    ...enhancers
+  )(createReduxStore)(
     makeRootReducer(),
-    initialState,
-    composeEnhancers(
-      applyMiddleware(...middleware),
-      ...enhancers
-    )
+    initialState
   );
+
   store.asyncReducers = {};
 
   store.unsubscribeHistory = browserHistory.listen(updateLocation(store));
@@ -43,6 +56,9 @@ const createStore = (initialState = {}) => {
       store.replaceReducer(reducers(store.asyncReducers))
     })
   }
+
+  sagaMiddleware.run(helloSaga);
+
   return store
 };
 

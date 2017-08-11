@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import { fetchData } from '../../../actions/request';
+import Loading from '../../../components/Loading/Loading';
 
 import Layout from '../layout/Layout'
 
@@ -23,9 +24,13 @@ class HomeView extends React.Component {
   render() {
     const { homeData  } = this.props;
     return (
-      <Layout
-        homeData={ homeData }
-      />
+    <div>
+      {
+        homeData.actGoods ? <Layout
+          homeData={ homeData }
+        /> : <Loading />
+      }
+    </div>
     );
   }
 }

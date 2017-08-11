@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
 import './styles/main.less'
 
+const WIDTH = 750;
+
 
 // Store Initialization
 // ------------------------------------
@@ -11,6 +13,29 @@ const store = createStore(window.__INITIAL_STATE__);
 // Render Setup
 // ------------------------------------
 const MOUNT_NODE = document.getElementById('root');
+
+const isPC = () => {
+  const userAgentInfo = navigator.userAgent;
+  const Agents = ["Android", "iPhone",
+    "SymbianOS", "Windows Phone",
+    "iPad", "iPod"];
+  let flag = true;
+  for (let v = 0; v < Agents.length; v++) {
+    if (userAgentInfo.indexOf(Agents[v]) > 0) {
+      flag = false;
+      break;
+    }
+  }
+  return flag;
+};
+
+
+//根据屏幕宽度重新定义宽度
+if (!isPC()) {
+  const clientWidth = document.documentElement.clientWidth;
+  MOUNT_NODE.style.width = (clientWidth).toString() + 'px';
+}
+
 
 let render = () => {
   const App = require('./components/App').default;

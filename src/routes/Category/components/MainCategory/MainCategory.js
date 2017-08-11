@@ -14,7 +14,7 @@ class Layout extends React.Component {
   constructor(props) {
     super(props);
     this.setState = {
-
+      selecedIndex:0
     }
   }
 
@@ -22,10 +22,14 @@ class Layout extends React.Component {
 
   render() {
     const {firstGoodClassList} = this.props;
+
+    const style = {
+      color: '#f6ab00'
+    };
     return <List className="main-category">
         {
           firstGoodClassList && firstGoodClassList.map((item, index) => {
-            return <div className="main-category-item" key={ item.ids }>
+            return <div className="main-category-item" style={ this.setState.selecedIndex === index ? style : {} } key={ item.ids }>
               { item.name }
             </div>
           })

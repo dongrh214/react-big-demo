@@ -42,11 +42,12 @@ class Layout extends React.Component {
 
     const { secondGoodClassList } = this.props;
 
-    return <List className="second-category">
-      <div className="second-category-item-wrap">
-        { this.getSecondGoodClassList(secondGoodClassList) }
+    return <div className="second-category-wrap">
+        <List className="second-category">
+          { this.getSecondGoodClassList(secondGoodClassList) }
+        </List>
       </div>
-    </List>
+
   }
 }
 Layout.propTypes = {

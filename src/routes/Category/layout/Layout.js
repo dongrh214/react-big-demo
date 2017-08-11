@@ -9,6 +9,9 @@ import './Layout.less'
 import MainCategory from '../components/MainCategory/MainCategory'
 import SecondCategory from '../components/SecondCategory/SecondCategory';
 
+import Loading from '../../../components/Loading/Loading';
+
+
 
 import { List } from 'antd-mobile';
 
@@ -39,7 +42,7 @@ class Layout extends React.Component {
         secondGoodClassList={ props }
       />
     } else {
-      return ''
+      return <Loading />
     }
   }
 
@@ -49,11 +52,9 @@ class Layout extends React.Component {
     const { firstGoodClassList } = this.props;
     const { secondGoodClassList } = this.props;
 
-    return <div className="category-wrap" style={{ height: height-80 }}>
+    return <div className="category-wrap" style={{ height: height }}>
       { this.getMainCategory(firstGoodClassList) }
-      <List className="second-category">
-        { this.getSecondCategory(secondGoodClassList) }
-      </List>
+      { this.getSecondCategory(secondGoodClassList) }
     </div>
   }
 }
