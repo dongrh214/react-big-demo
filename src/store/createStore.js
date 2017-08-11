@@ -5,15 +5,17 @@ import makeRootReducer from './reducers'
 import { updateLocation } from './location'
 
 import createSagaMiddleware from 'redux-saga'
-import { helloSaga } from './saga'
+import rootSaga  from './sagas'
 
 const createStore = (initialState = {}) => {
   // ======================================================
   // Middleware Configuration
   // ======================================================
-  const middlewares = [thunk];
+  // const middlewares = [thunk];
+  const middlewares = [];
   const sagaMiddleware = createSagaMiddleware();
   middlewares.push(sagaMiddleware);
+  middlewares.push(thunk);
 
   // ======================================================
   // Store Enhancers
@@ -57,7 +59,7 @@ const createStore = (initialState = {}) => {
     })
   }
 
-  sagaMiddleware.run(helloSaga);
+  sagaMiddleware.run(rootSaga);
 
   return store
 };
