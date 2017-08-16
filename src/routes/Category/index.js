@@ -8,7 +8,7 @@ export default (store) => ({
   getComponent (nextState, cb) {
     require.ensure([], (require) => {
 
-      const Category = require('./containers/Category').default;
+      const Category = require('./container/Category').default;
       const reducer = require('./modules/category').default;
 
       injectReducer(store, { key: 'categoryData', reducer });

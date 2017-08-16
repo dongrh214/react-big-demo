@@ -6,7 +6,7 @@
 // Actions
 // ------------------------------------
 
-const requestSuccess = (dispatch, result, url) => {
+export const requestSuccess = (dispatch, result, url) => {
 
   dispatch({
     type: 'REQUEST_SUCCESS',
@@ -16,7 +16,7 @@ const requestSuccess = (dispatch, result, url) => {
   return result
 };
 
-const requestFail = (dispatch, err, url) => {
+export const requestFail = (dispatch, err, url) => {
   dispatch({
     type: 'REQUEST_FAIL',
     err,
@@ -25,6 +25,30 @@ const requestFail = (dispatch, err, url) => {
   return err
 };
 
+
+
+
+
+export const receviceData = (result, url) => {
+
+  console.log('result:',result)
+  return {
+    type: 'REQUEST_SUCCESS',
+    payload: result,
+    url:url || ''
+  };
+};
+export const createRequest = (dispatch, url, params) => {
+  dispatch({
+    type: 'CREATE_REQUEST',
+    url:url || '',
+    params: params
+  });
+  return {}
+};
+
+
+//redux-thunk
 export const fetchData = (url,params) => (dispatch, getState) => {
   const pms = Object.assign({},params);
   const method = pms.method || 'get';
