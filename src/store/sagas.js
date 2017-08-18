@@ -3,7 +3,6 @@ import { put, call, takeEvery } from 'redux-saga/effects'
 import { receviceData, requestFail} from '../actions/request'
 
 export function* incrementAsync() {
-  // yield call(delay, 1000)
   console.log(123456);
   yield put({
     type: 'INCREMENT',
@@ -21,11 +20,14 @@ const fetchData = (url, params) => {
 
 export function* createRequest(action) {
    //yield put( actions.requestPosts(reddit) )  提示开始request
-
-   const data = yield call(fetchData, action.url);
-   // console.log(1234,action);
-
-   yield put( receviceData(data,action.url) )
+  try {
+    const data = yield call(fetchData, action.url);
+    yield put( receviceData(data,action.url) );
+    //暂时用此方法回调，待需求更好的方法替换
+    action.cb && action.cb(data)
+  } catch (err){
+    console.log('err:',err)
+  }
 }
 
 export default function* rootSaga() {

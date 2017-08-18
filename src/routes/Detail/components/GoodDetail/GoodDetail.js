@@ -11,8 +11,9 @@ import { PropTypes } from 'prop-types';
 import './GoodDetail.less'
 
 
-import { Tabs, WhiteSpace, Badge } from 'antd-mobile';
+import { Tabs } from 'antd-mobile';
 const TabPane = Tabs.TabPane;
+import PureComponent from '../../../../components/PureComponent'
 
 
 function callback(key) {
@@ -23,7 +24,7 @@ function handleTabClick(key) {
 }
 
 
-class GoodDetail extends React.Component {
+class GoodDetail extends PureComponent {
 
   constructor(props) {
     super(props);
@@ -34,32 +35,67 @@ class GoodDetail extends React.Component {
 
   componentDidMount() {}
 
-  getGoodDetail(detail) {
-    if (detail){
+  getParamList(mainList){
+    const { goodsOptionParamList} = this.props;
+    let paramListArr = [];
+    goodsOptionParamList.map((paramList,index) => {
+      if (paramList.paramValue && mainList.ids === paramList.parentId) {
+        paramListArr.push(
+          <li key={paramList.classId + index} className="specification-item-wrap">
+            <p className="item-left">{paramList.name}：</p>
+            <p className="item-right">{paramList.paramValue}</p>
+          </li>
+        )
+      }
 
-    } else {
-
-    }
+    });
+    return paramListArr
   }
 
+  getMainList(){
+    const { goodsOptionParamMainLis } = this.props;
+    let MainListArr = [];
+    let _this = this;
+    goodsOptionParamMainLis.map((mainList,index) => {
+      MainListArr.push(
+        <div key={mainList.ids} className="specifications">
+          <p className="specifications-title">{mainList.name}</p>
+          <ul className="specifications-contents">
+            { _this.getParamList(mainList) }
+          </ul>
+        </div>
+      )
+    });
+    return MainListArr
+  }
 
+  getGoodsinventoryList(){
+    const { goodsinventoryList } = this.props;
+    let inventoryListArr = [];
+    goodsinventoryList.map((goodsinventory,index) => {
+        inventoryListArr.push(
+            <li key={index} className="inventory-item">{goodsinventory.name}</li>
+        )
+    });
+    return inventoryListArr;
+  }
 
   render() {
-    return <Tabs defaultActiveKey="2" onChange={callback} onTabClick={handleTabClick}>
+    const { goods } = this.props;
+    return <Tabs defaultActiveKey="3" animated={false} onChange={callback} onTabClick={handleTabClick}>
       <TabPane tab={ <label>商品介绍</label>} key="1">
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '15rem', backgroundColor: '#fff' }}>
-            Content of First Tab
+          <div dangerouslySetInnerHTML={{__html: goods.content}}>
           </div>
         </TabPane>
         <TabPane tab={<label>规格参数</label>} key="2">
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '15rem', backgroundColor: '#fff' }}>
-            Content of Second Tab
-          </div>
+          {this.getMainList()}
         </TabPane>
         <TabPane tab={<label>包装售后</label>} key="3">
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '15rem', backgroundColor: '#fff' }}>
-            Content of Third Tab
-          </div>
+          <p className="inventory-title">包装售后</p>
+          <ul className="inventory-wrap">
+            { this.getGoodsinventoryList() }
+          </ul>
+
         </TabPane>
       </Tabs>
   }

@@ -30,19 +30,18 @@ export const requestFail = (dispatch, err, url) => {
 
 
 export const receviceData = (result, url) => {
-
-  console.log('result:',result)
   return {
     type: 'REQUEST_SUCCESS',
     payload: result,
     url:url || ''
   };
 };
-export const createRequest = (dispatch, url, params) => {
+export const createRequest = (dispatch, url, params, cb) => {
   dispatch({
     type: 'CREATE_REQUEST',
     url:url || '',
-    params: params
+    params: params,
+    cb: cb || null
   });
   return {}
 };

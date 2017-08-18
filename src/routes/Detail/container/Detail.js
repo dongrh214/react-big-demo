@@ -6,9 +6,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 
-import { fetchData, createRequest } from '../../../actions/request';
+import { createRequest } from '../../../actions/request';
+import { selectedGoodSku, toggleGoodsOptionSkuList } from '../modules/detail'
 
 import Layout  from '../layout/Detail'
+import Loading from '../../../components/Loading/Loading';
+
 
 class Detail extends React.Component {
 
@@ -20,28 +23,43 @@ class Detail extends React.Component {
   }
 
   componentDidMount() {
-
-    const url = 'https://www.xhqb.com/mallweb-app/wxmall/goods/goodsDetail?ids=20170414000000000467';
+    const _this = this;
+    const url = 'https://www.xhqb.com/mallweb-app/wxmall/goods/goodsDetail?ids=20160912000000000092';
     //
     const { dispatch } = this.props;
 
-    this.props.createRequest(dispatch, url, {
-      name:'sssss'
-    },11);
+    _this.props.createRequest(dispatch, url, {
+    },function (resp) {
+        if (resp.data && resp.data.goodsSkuList) {
+          //发起默认sku选择
+          _this.props.selectedGoodSku(dispatch, 0)
+        }
+    });
+  }
+  componentDidUpdate() {}
 
-    // dispatch(fetchData(url)).then((data) => {
-    //   const surl = 'https://www.xhqb.com/mallweb-app/wxmall/secondCategory?mainCategoryIds=20';
-    //   dispatch(fetchData(surl)).then(() => {
-    //   })
-    // });
+  getGoodDetailComponet(){
+    console.log('this.props:',this.props)
+
+    const { goodsDetail, selectedGoodSkuInfo, selectedGoodSku, toggleGoodsOptionSkuList, showGoodsSkuOptionList, dispatch } = this.props;
+    if (goodsDetail.goods) {
+      return <Layout
+        goodsDetail={ goodsDetail }
+        selectedGoodSkuInfo={ selectedGoodSkuInfo }
+        selectedGoodSku={ selectedGoodSku }
+        toggleGoodsOptionSkuList={toggleGoodsOptionSkuList}
+        showGoodsSkuOptionList={showGoodsSkuOptionList}
+        dispatch={ dispatch }
+      />
+    } else {
+      return <Loading/>
+    }
   }
 
   render() {
-    const { mainCategory } = this.props;
-
-    return <Layout
-      mainCategory={ mainCategory }
-    />
+    return  <div>{
+      this.getGoodDetailComponet()
+    }</div>
   }
 }
 Detail.propTypes = {
@@ -53,23 +71,26 @@ Detail.defaultProps = {
 
 const mapDispatchToProps = (dispatch)=> {
   return {
-    // fetchData: fetchData,
     createRequest,
+    selectedGoodSku,
+    toggleGoodsOptionSkuList,
     dispatch
   }
 };
-const getMapState = (state) => {
+const getMapState = (state,content) => {
   let data = {};
-  console.log('state:',state["detailData"])
-  if (state["detailData"]["data"] && state["detailData"].result === "success") {
+  console.log('state:',state)
+  if (state["detailData"][content]) {
     //获取数据成功
-    data = state["detailData"].data;
+    data = state["detailData"][content];
   }
   return data;
 };
 
 const mapStateToProps = (state) => ({
-  mainCategory : getMapState(state),
+  goodsDetail : getMapState(state,"data"),
+  selectedGoodSkuInfo: getMapState(state,"selectedGoodSkuInfo"),
+  showGoodsSkuOptionList: state["detailData"]["showGoodsSkuOptionList"],
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Detail)

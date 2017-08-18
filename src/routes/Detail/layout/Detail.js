@@ -8,22 +8,13 @@ import { PropTypes } from 'prop-types';
 import '../../../styles/font.css'
 import './Good.less'
 
-import Loading from '../../../components/Loading/Loading';
 import TopSlider from '../components/TopSlider/TopSlider';
 import SaleLabel from '../components/SaleLabel/SaleLabel'
 import GoodDetail from '../components/GoodDetail/GoodDetail'
+import SkuList from '../components/SkuList/SkuList'
 
 import { List, Tabs, WhiteSpace, Badge } from 'antd-mobile';
 const Item = List.Item;
-const TabPane = Tabs.TabPane;
-
-
-function callback(key) {
-  console.log('onChange', key);
-}
-function handleTabClick(key) {
-  console.log('onTabClick', key);
-}
 
 
 class Layout extends React.Component {
@@ -86,37 +77,62 @@ class Layout extends React.Component {
 
     }
   }
-  getGoodDetail(detail) {
-    if (detail){
-      return <GoodDetail />
+  getGoodDetail() {
+    const { goodsDetail } = this.props;
+    const { goods, goodsOptionParamMainList, goodsOptionParamList, goodsinventoryList } = goodsDetail;
+    if (goods){
+      return <GoodDetail
+        goods={goods}
+        goodsOptionParamMainLis={goodsOptionParamMainList}
+        goodsOptionParamList={goodsOptionParamList}
+        goodsinventoryList={goodsinventoryList}
+      />
     } else {
       return ''
     }
   }
+  getSkuList(){
+    const { goodsDetail, selectedGoodSkuInfo, selectedGoodSku, toggleGoodsOptionSkuList, showGoodsSkuOptionList, dispatch } = this.props;
+    const { goodsSkuList, goodsOptionSkuList, goodsAttrList} = goodsDetail;
+    return <SkuList
+      selectedGoodSkuInfo={selectedGoodSkuInfo}
+      goodsOptionSkuList={goodsOptionSkuList}
+      goodsAttrList={goodsAttrList}
+      goodsSkuList={goodsSkuList}
+      selectedGoodSku={selectedGoodSku}
+      toggleGoodsOptionSkuList={toggleGoodsOptionSkuList}
+      showGoodsSkuOptionList={showGoodsSkuOptionList}
+      dispatch={dispatch}
+    />
+  }
 
-
+  chooseGoodsSku(){
+    const { toggleGoodsOptionSkuList, dispatch } = this.props;
+    toggleGoodsOptionSkuList(dispatch);
+  }
 
   render() {
-    const { spfile, goods} = this.props.mainCategory;
-    console.log('spfile:',spfile)
-    console.log('goods:',goods)
+    const { goodsDetail, selectedGoodSkuInfo } = this.props;
+    const { spfile, goods } = goodsDetail;
     return <div>
       {/*顶部轮播图*/}
       { this.getTopSlider(spfile)}
       {/*标题及收藏*/}
-      { goods && this.getTitleAndColl(goods.title)}
+      { this.getTitleAndColl(goods.title)}
       {/*价格和剩余库存*/}
-      { goods && this.getPriceAndStock(110,33) }
+      { this.getPriceAndStock(110,33) }
       {/*销售标签*/}
-      { goods && this.getSaleContent(goods.saleContent)}
+      { this.getSaleContent(goods.saleContent)}
       {/*商品标签*/}
-      { goods && this.getSaleLabel(goods.saleLabel) }
+      { this.getSaleLabel(goods.saleLabel) }
       <List className="my-list">
-        <Item arrow="horizontal" onClick={() => {}}>已选：都颠三倒四的</Item>
+        <Item arrow="horizontal" onClick={() => { this.chooseGoodsSku() }}>已选：{ selectedGoodSkuInfo.skuOptionNames }</Item>
         <Item arrow="horizontal" onClick={() => {}}>商品详情</Item>
       </List>
       {/*商品属性查看*/}
-      { goods && this.getGoodDetail('ss') }
+      { this.getGoodDetail() }
+      {/*商品属性列表*/}
+      { this.getSkuList()}
     </div>
   }
 }
@@ -124,8 +140,6 @@ Layout.propTypes = {
 };
 Layout.defaultProps = {
 };
-
-
 
 export default Layout;
 
