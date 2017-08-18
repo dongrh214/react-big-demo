@@ -82,7 +82,7 @@ class GoodDetail extends PureComponent {
 
   render() {
     const { goods } = this.props;
-    return <Tabs defaultActiveKey="3" animated={false} onChange={callback} onTabClick={handleTabClick}>
+    return <Tabs defaultActiveKey="1" animated={false} onChange={callback} onTabClick={handleTabClick}>
       <TabPane tab={ <label>商品介绍</label>} key="1">
           <div dangerouslySetInnerHTML={{__html: goods.content}}>
           </div>
