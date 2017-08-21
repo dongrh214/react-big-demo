@@ -27,7 +27,7 @@ class GoodsList extends React.Component {
 
     this.props.createRequest(dispatch, url);
 
-    // dispatch(fetchData(url)).then((data) => {
+    // dispatch(fetchData(url)).then((data.js) => {
     //   const surl = 'https://www.xhqb.com/mallweb-app/wxmall/secondCategory?mainCategoryIds=20';
     //   dispatch(fetchData(surl)).then(() => {
     //   })

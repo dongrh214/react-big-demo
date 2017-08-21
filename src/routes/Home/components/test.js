@@ -35,8 +35,8 @@ class HomeSlider extends PureComponent {
     console.log('this.state.data.time:',this.state.data.get('times'));
     console.log('this.state.data.time:',this.state.data.get('ads').get('aaa'));
 
-    // this.setState(({data}) => ({
-    //     data: data.update('times', v => v + 1) })
+    // this.setState(({data.js}) => ({
+    //     data.js: data.js.update('times', v => v + 1) })
     // });
   }
 

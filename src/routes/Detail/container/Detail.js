@@ -79,7 +79,7 @@ const mapDispatchToProps = (dispatch)=> {
 };
 const getMapState = (state,content) => {
   let data = {};
-  console.log('state:',state)
+  console.log('state:',state);
   if (state["detailData"][content]) {
     //获取数据成功
     data = state["detailData"][content];

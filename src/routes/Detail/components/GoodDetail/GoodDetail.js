@@ -95,7 +95,6 @@ class GoodDetail extends PureComponent {
           <ul className="inventory-wrap">
             { this.getGoodsinventoryList() }
           </ul>
-
         </TabPane>
       </Tabs>
   }
