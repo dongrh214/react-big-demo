@@ -21,14 +21,14 @@ class GoodsList extends React.Component {
 
   componentDidMount() {
 
-    const url = 'https://www.xhqb.com/mallweb-app/wxmall/goods/goodsDetail?ids=20170414000000000467';
+    const url = '/mallweb-app/wxmall/goods/goodsDetail?ids=20170414000000000467';
     //
     const { dispatch } = this.props;
 
     this.props.createRequest(dispatch, url);
 
     // dispatch(fetchData(url)).then((data.js) => {
-    //   const surl = 'https://www.xhqb.com/mallweb-app/wxmall/secondCategory?mainCategoryIds=20';
+    //   const surl = '/mallweb-app/wxmall/secondCategory?mainCategoryIds=20';
     //   dispatch(fetchData(surl)).then(() => {
     //   })
     // });
