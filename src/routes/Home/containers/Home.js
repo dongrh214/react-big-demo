@@ -15,7 +15,7 @@ class HomeView extends React.Component {
 
   componentDidMount(){
     const { dispatch } = this.props;
-    const url = 'https://www.xhqb.com/mallweb-app/wxmall/newIndex';
+    const url = '/mallweb-app/wxmall/newIndex';
     dispatch(fetchData(url)).then((data) => {
       console.log('获取到首页数据!')
     })
