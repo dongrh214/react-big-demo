@@ -24,7 +24,7 @@ class Detail extends React.Component {
 
   componentDidMount() {
     const _this = this;
-    const url = 'https://www.xhqb.com/mallweb-app/wxmall/goods/goodsDetail?ids=20160912000000000092';
+    const url = '/mallweb-app/wxmall/goods/goodsDetail?ids=20160912000000000092';
     //
     const { dispatch } = this.props;
 
