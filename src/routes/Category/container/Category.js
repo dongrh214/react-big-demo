@@ -20,12 +20,12 @@ class Category extends React.Component {
   }
 
   componentDidMount() {
-    const url = 'https://www.xhqb.com/mallweb-app/wxmall/mainCategory';
+    const url = '/mallweb-app/wxmall/mainCategory';
 
     const { dispatch } = this.props;
 
     dispatch(fetchData(url)).then((data) => {
-      const surl = 'https://www.xhqb.com/mallweb-app/wxmall/secondCategory?mainCategoryIds=20';
+      const surl = '/mallweb-app/wxmall/secondCategory?mainCategoryIds=20';
       dispatch(fetchData(surl)).then(() => {
       })
     });
