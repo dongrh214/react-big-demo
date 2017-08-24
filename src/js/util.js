@@ -20,7 +20,7 @@ const fail = (err) => {
 };
 export const getData = async function () {
   console.log('start');
-  const url = 'https://www.xhqb.com/mallweb-app/wxmall/newIndex';
+  const url = '/mallweb-app/wxmall/newIndex';
   try {
     const result = await fetch(url);
     return success(result)
